@@ -318,6 +318,7 @@ class CountryCodePicker extends StatefulWidget {
   final BorderSide buttonSide;
   final Function(CountryCode countryCode)? buttonBuilder;
   final void Function(CountryCode)? onSelectionChange;
+  final CountryPickerBottomSheetSettings bottomSheetSettings;
   const CountryCodePicker({
     super.key,
     required this.controller,
@@ -334,6 +335,7 @@ class CountryCodePicker extends StatefulWidget {
     this.smoothness = 1,
     this.buttonSide = BorderSide.none,
     this.onSelectionChange,
+    this.bottomSheetSettings = const CountryPickerBottomSheetSettings(),
   });
   @override
   State<CountryCodePicker> createState() => _CountryCodePickerState();
@@ -429,10 +431,7 @@ class _CountryCodePickerState extends State<CountryCodePicker> {
   Future<void> showSheet() async {
     widget.controller._setIsSheetOpenFunction(true);
     await CountryPickerBottomSheet.show(context,
-    settings: CountryPickerBottomSheetSettings(
-      smoothness: widget.smoothness,
-      darkModePrimaryColor: Colors.green,
-    ),
+    settings: widget.bottomSheetSettings,
         countries: filteredCountryCodeGroup,
         selectedCountryCode: selectedCountryCode,
         onSelectionChange: (countryCode) {

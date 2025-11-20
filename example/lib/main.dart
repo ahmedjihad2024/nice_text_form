@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nice_text_form/country_code_button/country_picker_bottom_sheet.dart';
 import 'package:nice_text_form/nice_text_form.dart';
 
 void main() {
@@ -40,6 +41,10 @@ class _MyHomePageState extends State<MyHomePage> {
               buttonWidth: 50,
               buttonHeight: 30,
               buttonBorderRadius: 6,
+              bottomSheetSettings: CountryPickerBottomSheetSettings(
+                smoothness: 1,
+                darkModePrimaryColor: Colors.red,
+              ),
               onSelectionChange: (data) {
                 print(data.countryName);
               },
@@ -57,7 +62,9 @@ class _MyHomePageState extends State<MyHomePage> {
             TextButton(
                 onPressed: () {
                   controller.changeLocale(
-                      controller.locale == const Locale('en', "us") ? const Locale('ar', "eg") : const Locale('en', "us"));
+                      controller.locale == const Locale('en', "us")
+                          ? const Locale('ar', "eg")
+                          : const Locale('en', "us"));
                 },
                 child: Text('Toggle Locale')),
             TextButton(
